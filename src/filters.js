@@ -11,35 +11,8 @@ const App = () => {
   const [editedImages,setEditedImages]= useState([]);
   const [currentImageIndex,setCurrentImageIndex]=useState(0);
 
-
-  /*useEffect(() => {
-  // LOADING saved image from local storage
-  const editedImage = JSON.parse(localStorage.getItem('editedImage'));
-  if (editedImage) {
-    setSelectedImage(editedImage.url);
-    setSaturation(editedImage.saturation);
-    setBAndW(editedImage.bAndW);
-    setContrast(editedImage.contrast);
-  } else {
-    const selectedImage = localStorage.getItem('selectedImage');
-    if (selectedImage) {
-      setSelectedImage(selectedImage);
-    } else {
-      const originalImage=localStorage.getItem('originalImage');
-      if (originalImage) {
-        selectedImage(originalImage);
-      }
-    }
-  }
-
-  // LOADING saved gallery images from local storage
-  const savedGalleryImages = JSON.parse(localStorage.getItem('galleryImages'));
-  if (savedGalleryImages) {
-    setEditedImages(savedGalleryImages);
-  }
-}, []);*/
 useEffect(() => {
-  // Load saved image information from localStorage
+  // Load saved image information
   const savedImage = JSON.parse(localStorage.getItem('editedImage'));
   if (savedImage) {
     setSelectedImage(savedImage.url);
@@ -47,10 +20,10 @@ useEffect(() => {
     setBAndW(savedImage.bAndW);
     setContrast(savedImage.contrast);
   }
-}, []); // Run only on component mount
+}, []);
 
 useEffect(() => {
-  // Save edited image information to localStorage
+  // Save edited image
   if (selectedImage) {
     localStorage.setItem('editedImage', JSON.stringify({
       url: selectedImage,
@@ -63,7 +36,7 @@ useEffect(() => {
 
 
   useEffect(() => {
-    // SAVING the edited image to local stroage
+    // SAVING the edited image
     if (selectedImage) {
       localStorage.setItem('editedImage', JSON.stringify(selectedImage));
     }
@@ -88,21 +61,6 @@ useEffect(() => {
     setBAndW(false);
     setContrast(100);
   };
-
-  /*const handleSaveImage = () => {
-    if (selectedImage) {
-      const updatedImages = [
-        ...editedImages,
-        { url: selectedImage, saturation, bAndW, contrast }
-      ];
-      setCurrentImageIndex(updatedImages.length - 1);
-      setEditedImages(updatedImages);
-      localStorage.setItem('galleryImages', JSON.stringify(updatedImages));
-      localStorage.setItem('editedImages',JSON.stringify({url:selectedImage,saturation,bAndW,contrast}));
-    }
-    setShowGallery(false);
-    alert('Image saved successfully!');
-  };*/
 
   const handleSaveImage = () => {
     if (selectedImage) {
