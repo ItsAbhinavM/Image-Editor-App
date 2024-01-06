@@ -6,6 +6,7 @@
 - Adding filters ( Saturation, Contrast , Black&White )
 - Download edited image
 - Gallery to display images
+- Next and prev button to navigate images in Gallery
 
 ## INSTALLATION
 
